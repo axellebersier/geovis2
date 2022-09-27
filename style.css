@@ -1,0 +1,49 @@
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    margin: 20px;
+  }
+  
+  h1 {
+    margin:  0;
+    font-weight: normal;
+    width: calc(75vw - 400px); 
+  }
+
+#scale {
+    position: absolute;
+    top: 580px;
+    left: 620px;
+  }
+  .copyright {
+    position: absolute;
+    top: 660px;
+    font-size: 10 px;
+    margin-bottom: 7px;
+  }
+
+  
+#chloropleth {
+    position: absolute;
+    left: 20px;
+    min-height: 500px;
+    width: 600px;
+    height: 500px;
+}
+.carte-interactive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 400px); 
+    height: calc(100vh - 110px);
+    min-height: 500px;
+    background-color: #999;
+    border: 1px solid #666;
+  }
+  
+  #infobox-communes{
+    position: absolute;
+    top: 200px;
+    left: 620px;
+    height: 400px;
+  }

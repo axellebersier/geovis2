@@ -2,16 +2,72 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Evolution du terrorisme</title>
+    <title>Activité du terrorisme mondial</title>
     <link rel="stylesheet" href="index.css" />
 
     <!-- Chargement des librairies -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="libs/leaflet/leaflet.js"></script>
 
     <!-- Chargement des données -->
+    <link rel="stylesheet" href="style.css" />
 
 </head>
 <body>
-    <h1>Visualisation globale entre 1970 et 2020</h1>
+  <h1>Evolution du terrorisme entre 1970 et 2020</h1>
+
+    <!-- option à choix multiples pour les attaques
+  <div class="tours">
+    <input class="selector" type="button" value="1er tour" id="tour"
+    onclick ="set_tour(1)" style="font-weight: bold;"/>
+    <input class= "selector" type="button" value="2eme tour" id="second_tour"
+    onclick ="set_tour(2)"/>
+  </div>
+
+
+  <div class="liste-candidats">
+    <label for="candidat"> </label>
+      <select class="form-control" id="candidat" onchange ="set_cand(value)">
+        <option id="arthaud" value="arthaud">Nathalie Arthaud </option>
+        <option id="roussel" value="roussel">Fabien Roussel</option>
+        <option id="macron" value="macron" selected>Emmanuel Macron</option>
+        <option id="lassale" value="lassale">Jean Lassalle</option>
+        <option id= "lepen" value="lepen">Marine Le Pen</option>
+        <option id="zemmour" value="zemmour">Eric Zemmour</option>
+        <option id="melenchon" value="melenchon">Jean-Luc Mélenchon</option>
+        <option id="hidalgo" value="hidalgo">Anne Hidalgo</option>
+        <option id="jadot" value="jadot">Yannick Jadot</option>
+        <option id="pecresse" value="pecresse">Valérie Pécresse</option>
+        <option id="poutou" value="poutou">Philippe Poutou</option>
+        <option id="dupontaignan" value="dupontaignan">Nicolas Dupont-Aignan</option>
+      </select>
+  </div>
+   -->
+   <p><b>Pourcentage de votes pour le candidat </b></p>
+   <svg width="180" height="150">
+     <rect x="1" y="10" width="29" height="22" fill="#ff0000" stroke="#000000" strokeWidth="0.5" />
+     <rect x="1" y="35" width="29" height="22" fill="#FF7F7F" stroke="#000000" strokeWidth="0.5" />
+     <rect x="1" y="60" width="29" height="22" fill="#FFFFFF" stroke="#000000" strokeWidth="0.5" />
+     <rect x="1" y="85" width="29" height="22" fill="#AFFFFF" stroke="#000000" strokeWidth="0.5" />
+     <rect x="1" y="110" width="29" height="22" fill="#00FFFF" stroke="#000000" strokeWidth="0.5" />
+
+     <line x1="30" y1="10" x2="35" y2="10" strokeWidth="0.5" stroke="#000000" />
+     <line x1="30" y1="35" x2="35" y2="35" strokeWidth="0.5" stroke="#000000" />
+     <line x1="30" y1="60" x2="35" y2="60" strokeWidth="0.5" stroke="#000000" />
+     <line x1="30" y1="85" x2="35" y2="85" strokeWidth="0.5" stroke="#000000" />
+     <line x1="30" y1="132" x2="35" y2="132" strokeWidth="0.5" stroke="#000000" />
+
+     <text x="38" y="15">100 %</text>
+     <text x="38" y="40">50 %</text>
+     <text x="38" y="65">> 5 %</text>
+     <text x="38" y="90">] 0 ; 5] </text>
+     <text x="38" y="137">0 %</text>
+   </svg>
+   </div>
+   <div class="copyright">
+    <p>Source des données:<br /> </p>
+      2022 © Axelle Bersier, UNIL
+  </div>
   <script src="index.js"></script>
 </body>
 </html>
