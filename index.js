@@ -7,8 +7,8 @@
 var mymap = new L.Map('map', {
   center: [46.712004980312685, 8.366493210196497],
   minZoom: 2,
-  maxZoom: 5,
-  zoom: 3
+  maxZoom: 6,
+  zoom: 2
 });
 
 // fond de carte 
@@ -34,7 +34,7 @@ L.control.layers(baseLayers, overlays).addTo(mymap);
 
 // Afficher les coordonnées géographiques de l'emplacement de la souris
 // Les coordonnées sont affichées en bas à gauche, sous la carte
-mymap.on('mousemove', function(e){
-  var coord = e.latlng;
-  $('#coordonnees').html('Coordonnées: ' + coord.lat.toFixed(5) +' / '+ coord.lng.toFixed(5));
-});
+//mymap.on('mousemove', function(e){
+//  var coord = e.latlng;
+//  $('#coordonnees').html('Coordonnées: ' + coord.lat.toFixed(5) +' / '+ coord.lng.toFixed(5));
+//});
