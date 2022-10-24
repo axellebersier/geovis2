@@ -1,96 +1,101 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Evolution du terrorisme mondial</title>
 
-    <!-- Chargement des librairies css -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <meta charset="utf-8" />
+  <title>Evolution du terrorisme mondial</title>
 
-    <!-- Chargement scripts js -->
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-    <script src="jquery.js"></script>
-    <!-- Chargement des données -->
-   
- </head>
-  <body>
-    <h1>Activité du terrorisme mondial</h1>
-    <h2>Evolution du terrorisme entre 1970 et 2020</h2>
-    <div class="main">
-      <div id="map" class="carte-interactive"></div>
+  <!-- Chargement des librairies css -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
 
-      <!-- potentiellement à supprimer
-      <div id="coordonnees">Coordonnées: déplacez la souris sur la carte</div>
-      -->
-      <div class="sidebar">
-       <br>
-        <div class="yearfilter">
-         <label>Année </label>
-         <b></b><span id="year"> </span></b>
-          <br><br>
-         <input id="slider" type="range" min="1" step="1" value="55" oninput="addfunction()"/>       
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+
+  <!-- Chargement scripts js -->
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="libs/L.D3SvgOverlay.min.js"></script>
+
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+    integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+    crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+  <!-- Chargement des données -->
+  <script src="data_23.js"></script>
+
+
+</head>
+
+<body>
+  <h1>Activité du terrorisme mondial</h1>
+  <h2>Evolution du terrorisme entre 1970 et 2020</h2>
+  <div class="main">
+    <div id="map" class="carte-interactive"></div>
+
+    <div class="sidebar">
+      <br>
+      <div class="yearfilter">
+        <label>Année </label>
+        <b></b><span id="yeardate"> </span></b>
+        <br><br>
+        <input id="slider" type="range" min="1970" max="2020" step="1" value="50" oninput="ShowDataForYear()" />
       </div>
-
-         <div class="cols-2" style="border-top: 1px solid #c0c0c0; margin-top: 10px;">
-            <div class="left">
-              <p><b>Nombre d'attaques </b></p>
-              <svg width="180" height="150">
-                <rect x="1" y="10" width="29" height="22" fill="#54278f" stroke="#000000" strokeWidth="0.5" />
-                <rect x="1" y="35" width="29" height="22" fill="#756bb1" stroke="#000000" strokeWidth="0.5" />
-                <rect x="1" y="60" width="29" height="22" fill="#9e9ac8" stroke="#000000" strokeWidth="0.5" />
-                <rect x="1" y="85" width="29" height="22" fill="#cbc9e2" stroke="#000000" strokeWidth="0.5" />
-                <rect x="1" y="110" width="29" height="22" fill="#f2f0f7" stroke="#000000" strokeWidth="0.5" />
-
-                <line x1="30" y1="10" x2="35" y2="10" strokeWidth="0.5" stroke="#000000" />
-                <line x1="30" y1="35" x2="35" y2="35" strokeWidth="0.5" stroke="#000000" />
-                <line x1="30" y1="60" x2="35" y2="60" strokeWidth="0.5" stroke="#000000" />
-                <line x1="30" y1="85" x2="35" y2="85" strokeWidth="0.5" stroke="#000000" />
-                <line x1="30" y1="110" x2="35" y2="110" strokeWidth="0.5" stroke="#000000" />
-                <line x1="30" y1="132" x2="35" y2="132" strokeWidth="0.5" stroke="#000000" />
-
-                <text x="38" y="15">Max: 22969 (Uri)</text>
-                <text x="38" y="40">1500</text>
-                <text x="38" y="65">500</text>
-                <text x="38" y="90">300</text>
-                <text x="38" y="115">100</text>
-                <text x="38" y="137">Min:0</text>
-              </svg>
-             </div>
-          </div>
-        <br><br><br>
-        <div class="infobox" id="InfoBox">
-          <p><i>Cliquez sur un symbole pour obtenir le résultat détaillé du pays.</i></p>   
-          </div>
-          
-        <div class="liste-attaques">
-          <label for="attaques"> </label>
-            <select class="form-control" id="candidat" onchange ="set_cand(value)">
-              <option id="type_1" value="type_1">type_1 </option>
-              <option id="type_2" value="type_2">type_2</option>
-              <option id="type_3" value="type_3" selected>type_3</option>
-              <option id="type_4" value="type_4">type_4</option>
-              <option id= "type_5" value="type_5">type_5</option>
-              <option id="type_6" value="type_6">type_6</option>
-              <option id="type_7" value="type_7">type_7</option>
-              <option id="type_8" value="type_8">type_8</option>
-              <option id="type_9" value="type_9">type_9</option>
-            </select>
+      <!----
+        <select class="form-check" type="checkbox" id="type_attaque" onchange="attak(value)">
+        </select>
+      </div>
+    -->
+      <div class="form-group">
+        <label>Type of attacks</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_1" checked>
+          <label class="form-check-label" value="1" for="type_1">Assassination</label>
         </div>
-    <!-- option à choix multiples pour les attaques
-  <div class="tours">
-    <input class="selector" type="button" value="1er tour" id="tour"
-    onclick ="set_tour(1)" style="font-weight: bold;"/>
-    <input class= "selector" type="button" value="2eme tour" id="second_tour"
-    onclick ="set_tour(2)"/>
-  </div>
-  -->
-    <div class="copyright">
-     <p>Source des données:<br /> </p>
-      2022 © Axelle Bersier, UNIL
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_2" checked>
+          <label class="form-check-label" value="2" for="type_2">Armed assault</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_3" checked>
+          <label class="form-check-label" value="3" for="type_3">Bombing/Explosion</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_4" checked>
+          <label class="form-check-label" value="4" for="type_4">Hijacking</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_5" checked>
+          <label class="form-check-label" value="5" for="type_5">Barricade Incident</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_6" checked>
+          <label class="form-check-label" value="6" for="type_6">Kidnapping</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_7" checked>
+          <label class="form-check-label" value="7" for="type_7">Facility/ Infrastructure attack</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_8" checked>
+          <label class="form-check-label" value="8" for="type_8">Unarmed assault</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="type_9" checked>
+          <label class="form-check-label" value="9" for="type_9">Unknown</label>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>Source des données:<br /> </p>
+        2022 © Axelle Bersier, UNIL
+      </div>
     </div>
   </div>
-</div>
-    <script src="index.js"></script>
-  </body>
+  <script src="index.js"></script>
+</body>
+
 </html>
